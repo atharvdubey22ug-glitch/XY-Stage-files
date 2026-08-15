@@ -2,5 +2,7 @@ License: The hardware design files in this repository are provided under the F2R
 
 
 # XY-Stage-files
-Below are the step file and bill of materials for XY stage one 
+Below are the step file and bill of materials for XY stage one (Use PETG for printing)
 STEP files, BOM, and other hardware design files are licensed under F2R Hardware License v1.0
+
+
