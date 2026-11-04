@@ -42,7 +42,7 @@ If you are building one for the first time, **start with XY Lab**.
 
 | File | What it is |
 |---|---|
-| `XY Lab.step` | CAD for the XY Lab stage |
+| `XY Lab.step` | Full XY Lab assembly: printed parts, motors and hardware in place |
 | `XY STAGE 1.step` | CAD for the original XY One |
 | `XY STAGE UPDATED.step` | CAD for the revised XY One |
 | `ASSEMBLY.md` + `assembly/` | Illustrated XY Lab assembly guide and its images |
@@ -94,7 +94,8 @@ Quantities are for a complete stage with its electronics. Links are in `Electron
 
 ## Step 1 — Print the parts
 
-1. Open the `.step` file for your stage and export each body to STL/3MF.
+1. Open the `.step` file for your stage and export each printed body to STL/3MF.
+   For **XY Lab**, print **1 × stage body, 2 × coupler cap and 2 × coupler cup**. The motors and screws in the file are there for reference only.
 2. Print in **PETG**. The flexures rely on PETG's toughness and fatigue resistance.
 3. Suggested starting point (tune for your printer):
    - Print the main body **flat on the bed**, in the orientation it appears in the CAD file, so the flexure hinges are formed by in-plane perimeters rather than stacked layers.
