@@ -2,6 +2,10 @@
 
 Open design files for the **F²R (Fiction to Reality)** 3D-printed XY positioning stages: compliant (flexure) mechanisms driven by low-cost stepper motors, built to bring nanometre-scale positioning to labs, classrooms and makers at a fraction of the cost of commercial stages.
 
+![Exploded view of the XY Lab stage](assembly/01-exploded-overview.png)
+
+**Building an XY Lab? Follow the illustrated [Assembly Guide](ASSEMBLY.md).**
+
 > **Licence:** F²R Hardware License v1.0. Personal, educational, experimental and non-commercial research use is permitted with attribution. Commercial manufacture, sale or use requires prior written permission from F²R. See [`LICENSE.pdf`](LICENSE.pdf).
 
 ---
@@ -41,6 +45,7 @@ If you are building one for the first time, **start with XY Lab**.
 | `XY Lab.step` | CAD for the XY Lab stage |
 | `XY STAGE 1.step` | CAD for the original XY One |
 | `XY STAGE UPDATED.step` | CAD for the revised XY One |
+| `ASSEMBLY.md` + `assembly/` | Illustrated XY Lab assembly guide and its images |
 | `Electronics and parts.pdf` | Original parts list with purchase links |
 | `LICENSE.pdf` / `LICENSE.docx` / `F2R Hardware License v1.0.docx` | Licence text |
 
@@ -61,22 +66,25 @@ The difference between *resolved* and *repeatable* matters: single microsteps ca
 
 Quantities are for a complete stage with its electronics. Links are in `Electronics and parts.pdf`.
 
-### Mechanical
+### Mechanical (XY Lab)
 
 | Qty | Part | Notes |
 |---|---|---|
-| 1 | Main body (printed) | From the `.step` file for your stage |
-| 1 per motor | Motor couplers (printed) | |
-| as needed | M3 hex screws and nuts | |
+| 1 | Stage body (printed) | One print: frame, flexures and moving platform |
+| 2 | Coupler cap (printed) | Holds the lead-screw head |
+| 2 | Coupler cup (printed) | Fits the motor's D-shaft and closes over the cap |
+| 2 | M3 × 16 socket head cap screw | Lead screws |
+| 2 | M3 hex nut | Captured in the stage's nut housings |
+| 4 | M3 × 10 socket head cap screw | Motor mounting |
 | — | **PETG filament** | PETG only. PLA creeps and fatigues in flexures. |
 
 ### Electronics
 
 | Qty | Part | Notes |
 |---|---|---|
-| 2–3 | 28BYJ-48 5 V stepper motors | One per axis. Must be converted to bipolar (Step 2). |
-| 2–3 | TMC2208 stepper driver modules | One per motor |
-| 2–3 | Stepper driver expansion boards (A4988-style carrier) | One per driver; makes wiring and microstep jumpers easy |
+| 2 | 28BYJ-48 5 V stepper motors | One per axis. Must be converted to bipolar (Step 2). |
+| 2 | TMC2208 stepper driver modules | One per motor |
+| 2 | Stepper driver expansion boards (A4988-style carrier) | One per driver; makes wiring and microstep jumpers easy |
 | 1 | Arduino Nano (or ESP32) | Controller |
 | 1 | 12 V, 2 A DC power supply | Plus a barrel-jack connector |
 | — | Jumper wires | |
@@ -146,11 +154,19 @@ Use **1/16** for the finest motion. Check your module's pin labels, since TMC220
 
 ## Step 5 — Assemble the stage
 
-1. Press-fit or screw the motor couplers onto the motor shafts.
-2. Mount the motors to the main body with M3 screws and nuts. Do not over-tighten into printed plastic.
-3. Connect each coupler to its drive input (the leadscrew on XY Lab). On XY Lab the flexure provides the preload, so the drive should seat without any extra springs.
-4. Move each axis gently by hand. It should flex smoothly and spring back to centre. Any grinding or binding means a part is misaligned.
-5. Bolt the stage to a rigid, heavy base (an optical breadboard is ideal). If you are imaging the stage, mount the microscope or camera to the **base, not to the stage**, so motor vibration does not reach the optics.
+**Full illustrated instructions: [ASSEMBLY.md](ASSEMBLY.md).**
+
+![How the XY Lab drive works](assembly/02-how-the-drive-works.png)
+
+In short, for each axis:
+
+1. Drop an M3 nut into the nut housing in the moving carriage.
+2. Put an M3 × 16 screw into the coupler cap, head inside.
+3. Thread the screw through the fixed wall into the nut, leaving about 1 mm between the cap and the wall.
+4. Push the coupler cup onto the motor's D-shaft.
+5. Slide the motor in so the cup closes over the cap, and screw the motor tabs to the standoffs with two M3 × 10 screws.
+
+Then bolt the slotted feet to a breadboard with M6 screws. Mount any optics to the breadboard, **not to the stage**, so motor vibration does not reach them.
 
 ## Step 6 — First motion test
 
