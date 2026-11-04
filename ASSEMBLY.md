@@ -32,7 +32,7 @@ The X and Y axes are built the same way. Steps 1–5 show the X axis; Step 6 rep
 | Qty | Part | Notes |
 |---|---|---|
 | 1 | Stage body | One print: fixed frame, flexures and moving platform together |
-| 2 | Coupler cap | Small teal part in the images. Holds the lead-screw head. |
+| 2 | Coupler cap | Small teal sleeve in the images. Holds the lead-screw head. |
 | 2 | Coupler cup | Larger orange part. Has a D-shaped hole for the motor shaft. |
 
 ### Hardware
@@ -87,8 +87,8 @@ Each axis has a **nut housing**: a narrow slot in the moving carriage, open at t
 
 ![M3 screw going into the coupler cap](assembly/04-screw-into-cap.png)
 
-1. Hold the coupler cap with its **open (wide) end** facing you.
-2. Push the M3 × 16 screw in, **tip first**, so the shank comes out through the slotted end and the **head sits inside the cap**.
+1. Hold the coupler cap with its **open end** facing you. The cap is a sleeve with a 5.5 mm pocket for the screw head and a 4 mm hole through its closed end.
+2. Push the M3 × 16 screw in, **tip first**, so the shank comes out through the hole in the closed end and the **head sits in the pocket**.
 3. Make one of these for each axis.
 
 ## Step 3 — Thread the lead screw into the nut
