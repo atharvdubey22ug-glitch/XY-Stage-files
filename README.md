@@ -79,6 +79,8 @@ Quantities are for a complete stage with its electronics. Links are in `Electron
 | 2 | Coupler cup (printed) | Fits the motor's D-shaft and closes over the cap |
 | 2 | M3 × 16 socket head cap screw | Lead screws |
 | 2 | M3 hex nut | Captured in the stage's nut housings |
+| 2 | M3 washer (DIN 125, 0.5 mm thick) | Between the fixed wall and each coupler cap, for smooth rotation |
+| — | Plastic-safe grease (PTFE or silicone) | Lead-screw thread and washer faces |
 | 4 | M3 × 10 socket head cap screw | Motor mounting |
 | — | **PETG filament** | PETG only. PLA creeps and fatigues in flexures. |
 
@@ -166,10 +168,12 @@ Use **1/16** for the finest motion. Check your module's pin labels, since TMC220
 In short, for each axis:
 
 1. Drop an M3 nut into the nut housing in the moving carriage.
-2. Put an M3 × 16 screw into the coupler cap, head inside.
-3. Thread the screw through the fixed wall into the nut, leaving about 1 mm between the cap and the wall.
+2. Put an M3 × 16 screw into the coupler cap, head inside, and slide an M3 washer onto the shank against the cap.
+3. Thread the screw through the fixed wall into the nut until the washer just touches the wall, with the cap still turning freely.
 4. Push the coupler cup onto the motor's D-shaft.
 5. Slide the motor in so the cup closes over the cap, and screw the motor tabs to the standoffs with two M3 × 10 screws.
+
+> **Grease:** put a small dab of plastic-safe grease (PTFE or silicone) on the lead-screw thread and on both faces of the washer. It makes the motion smoother and quieter and reduces wear on the printed parts. Use only a thin film: too much collects dust and can creep onto the flexures.
 
 Then bolt the slotted feet to a breadboard with M6 screws. Mount any optics to the breadboard, **not to the stage**, so motor vibration does not reach them.
 
@@ -226,6 +230,7 @@ Then:
 | Motor gets hot | Vref too high | Lower Vref |
 | Skipped steps / stalls | Vref too low or stepping too fast | Raise Vref slightly or increase `STEP_DELAY_US` |
 | Single microsteps sometimes do nothing or go backward | Normal at this scale (stiction / detent torque) | Command moves in groups of microsteps (e.g. 25) |
+| Rough, jerky or squeaky motion | Dry lead-screw thread or washer | Add a thin film of plastic-safe grease (PTFE or silicone) to the thread and washer faces |
 | Platform drifts over time | Flexure creep, wrong material, or damaged hinge | Use PETG, inspect hinges, allow settling time after large moves |
 | Image shakes while moving | Optics mounted to the stage | Mount optics to the base, not to the stage |
 

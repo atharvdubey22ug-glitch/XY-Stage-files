@@ -17,7 +17,7 @@ The X and Y axes are built the same way. Steps 1–5 show the X axis; Step 6 rep
 1. [Parts and tools](#parts-and-tools)
 2. [How the drive works](#how-the-drive-works)
 3. [Step 1 — Drop the nuts into their housings](#step-1--drop-the-nuts-into-their-housings)
-4. [Step 2 — Put the lead screw into the coupler cap](#step-2--put-the-lead-screw-into-the-coupler-cap)
+4. [Step 2 — Put the lead screw into the coupler cap and add the washer](#step-2--put-the-lead-screw-into-the-coupler-cap-and-add-the-washer)
 5. [Step 3 — Thread the lead screw into the nut](#step-3--thread-the-lead-screw-into-the-nut)
 6. [Step 4 — Push the coupler cup onto the motor](#step-4--push-the-coupler-cup-onto-the-motor)
 7. [Step 5 — Mount the motor](#step-5--mount-the-motor)
@@ -45,9 +45,11 @@ The X and Y axes are built the same way. Steps 1–5 show the X axis; Step 6 rep
 |---|---|---|
 | 2 | M3 × 16 socket head cap screw | Lead screws (one per axis) |
 | 2 | M3 hex nut | Captured in the nut housings |
+| 2 | M3 washer (DIN 125: 3.2 mm hole, 7 mm across, 0.5 mm thick) | Between the fixed wall and the coupler cap, for smooth rotation |
 | 4 | M3 × 10 socket head cap screw | Motor mounting (2 per motor) |
 | 2 | 28BYJ-48 stepper motor, converted to bipolar | Drives |
 | 4+ | M6 screws | Fixing the feet to an optical breadboard (optional) |
+| — | Plastic-safe grease (PTFE or silicone) | Lead-screw thread and washer faces |
 
 ### Tools
 
@@ -67,9 +69,10 @@ Working from the stage outwards:
 
 1. **M3 nut** sits in a slot in the moving carriage. It cannot turn, so when the screw turns, the carriage moves.
 2. **Lead screw** (M3 × 16) passes through a clearance hole in the fixed wall without touching it.
-3. **Coupler cap** holds the screw head.
-4. **Coupler cup** closes over the cap from the motor side.
-5. **Motor D-shaft** fits the D-shaped hole in the cup, so the motor turns the cup, cap and screw together.
+3. **M3 washer** sits between the wall and the cap. It gives the turning cap a smooth, hard surface to run against instead of rubbing on printed plastic.
+4. **Coupler cap** holds the screw head.
+5. **Coupler cup** closes over the cap from the motor side.
+6. **Motor D-shaft** fits the D-shaped hole in the cup, so the motor turns the cup, cap and screw together.
 
 The two-piece coupler is what lets you assemble the drive in stages: the screw and cap go into the stage first, and the motor and cup slide on afterwards.
 
@@ -87,13 +90,16 @@ Each axis has a **nut housing**: a narrow slot in the moving carriage, open at t
 
 > **Tip:** If the slot has stringing or a blob from printing, clean it out with a craft knife first. Forcing the nut past a blob can stress the flexure.
 
-## Step 2 — Put the lead screw into the coupler cap
+## Step 2 — Put the lead screw into the coupler cap and add the washer
 
-![M3 screw going into the coupler cap](assembly/04-screw-into-cap.png)
+![M3 screw going into the coupler cap, then the washer onto the shank](assembly/04-screw-into-cap.png)
 
 1. Hold the coupler cap with its **open end** facing you. The cap is a sleeve with a 5.5 mm pocket for the screw head and a 4 mm hole through its closed end.
 2. Push the M3 × 16 screw in, **tip first**, so the shank comes out through the hole in the closed end and the **head sits in the pocket**.
-3. Make one of these for each axis.
+3. Slide an **M3 washer** onto the shank so it sits flat against the closed end of the cap.
+4. Make one of these for each axis.
+
+> **Grease:** put a small dab of plastic-safe grease (PTFE or silicone) on the lead-screw thread and on both faces of the washer. It makes the motion smoother and quieter and reduces wear on the printed parts. Use only a thin film: too much collects dust and can creep onto the flexures.
 
 ## Step 3 — Thread the lead screw into the nut
 
@@ -103,9 +109,9 @@ Each axis has a **nut housing**: a narrow slot in the moving carriage, open at t
 
 1. Push the screw tip through the **clearance hole in the fixed wall** until it reaches the nut.
 2. Put the 2.5 mm hex key through the open end of the cap into the screw head, and turn **clockwise** to thread the screw into the nut.
-3. Keep turning until there is a **gap of about 1 mm between the cap and the wall**.
+3. Keep turning until the **washer just touches the wall**. The washer is 0.5 mm thick and fills most of the roughly 1 mm gap between the cap and the wall.
 
-The cap must not touch the wall. Any contact adds friction and stops the stage from moving cleanly.
+The cap must still turn freely. If you have to force the hex key at the end, the washer is clamped too hard: back the screw out a little until it turns smoothly again.
 
 > **If the screw won't catch the nut:** the slot is slightly deeper than the nut, so the nut can rest below the hole. Lift it gently with tweezers while you start the thread.
 
@@ -136,8 +142,8 @@ It should be a firm push fit with no wobble. If it is too tight, see [Troublesho
 The Y axis uses exactly the same parts in the same order:
 
 1. Nut into the Y housing (if you haven't already).
-2. Screw into cap.
-3. Screw through the wall into the nut, with a ~1 mm gap between the cap and the wall.
+2. Screw into cap, washer onto the shank, a little grease.
+3. Screw through the wall into the nut until the washer just touches the wall.
 4. Cup onto the second motor.
 5. Motor onto the Y standoffs with two M3 × 10 screws.
 
@@ -166,7 +172,8 @@ The Y axis uses exactly the same parts in the same order:
 | Screw won't catch the nut | Nut sitting below the hole | Lift the nut with tweezers while starting the thread |
 | Cup won't go on the shaft | D-hole slightly undersized from printing | Make sure the flats line up; ease the hole with a needle file |
 | Cup wobbles on the shaft | D-hole oversized | Reprint the cup, or add a thin strip of tape on the flat |
-| Platform doesn't move or binds | Cap rubbing the wall | Back the screw out a quarter turn |
+| Platform doesn't move or binds | Washer clamped too hard between cap and wall | Back the screw out a quarter turn |
+| Rough or squeaky rotation | Dry thread or washer | Add a thin film of plastic-safe grease to the thread and washer faces |
 | Motor tabs don't sit flat | Lead screw at the wrong depth | Adjust the screw (Step 3) |
 | Motor screws spin freely | Thread stripped in the standoff | Use a slightly longer screw, or reprint the body |
 | Motor hums but the platform doesn't move | Wiring or driver settings | See the README [troubleshooting](README.md#troubleshooting) |
