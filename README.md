@@ -6,6 +6,8 @@ Open design files for the **F²R (Fiction to Reality)** 3D-printed XY positionin
 
 *Full-quality video: [xy-lab-assembly.mp4](assembly/xy-lab-assembly.mp4)*
 
+![Exploded view of the XY Lab stage](assembly/01-exploded-overview.png)
+
 **Building an XY Lab? Follow the illustrated [Assembly Guide](ASSEMBLY.md).**
 
 > **Licence:** F²R Hardware License v1.0. Personal, educational, experimental and non-commercial research use is permitted with attribution. Commercial manufacture, sale or use requires prior written permission from F²R. See [`LICENSE.pdf`](LICENSE.pdf).
