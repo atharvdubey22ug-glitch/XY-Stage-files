@@ -2,7 +2,9 @@
 
 Open design files for the **F²R (Fiction to Reality)** 3D-printed XY positioning stages: compliant (flexure) mechanisms driven by low-cost stepper motors, built to bring nanometre-scale positioning to labs, classrooms and makers at a fraction of the cost of commercial stages.
 
-![Exploded view of the XY Lab stage](assembly/01-exploded-overview.png)
+![XY Lab assembling itself](assembly/xy-lab-assembly.gif)
+
+*Full-quality video: [xy-lab-assembly.mp4](assembly/xy-lab-assembly.mp4)*
 
 **Building an XY Lab? Follow the illustrated [Assembly Guide](ASSEMBLY.md).**
 

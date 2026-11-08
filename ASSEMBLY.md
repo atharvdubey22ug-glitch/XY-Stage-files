@@ -6,7 +6,9 @@ The X and Y axes are built the same way. Steps 1–5 show the X axis; Step 6 rep
 
 **Time:** about 30 minutes, once the parts are printed and the motors are converted to bipolar (see the [README](README.md#step-2--convert-the-motors-to-bipolar)).
 
-![Exploded view of the XY Lab stage](assembly/01-exploded-overview.png)
+![XY Lab assembling itself](assembly/xy-lab-assembly.gif)
+
+*Full-quality video: [xy-lab-assembly.mp4](assembly/xy-lab-assembly.mp4)*
 
 ---
 
@@ -26,6 +28,8 @@ The X and Y axes are built the same way. Steps 1–5 show the X axis; Step 6 rep
 ---
 
 ## Parts and tools
+
+![Exploded view of the XY Lab stage](assembly/01-exploded-overview.png)
 
 ### Printed parts (PETG)
 
