@@ -52,6 +52,8 @@ If you are building one for the first time, **start with XY Lab**.
 | `ASSEMBLY.md` + `assembly/` | Illustrated XY Lab assembly guide and its images |
 | `Electronics and parts.pdf` | Original parts list with purchase links |
 | `wiring/` | Circuit diagrams for the Arduino Nano and ESP32 versions |
+| `firmware/` | Stage firmware for the Arduino Nano and ESP32 versions |
+| `software/` | Web controller (Python) for jogging and repeatability testing |
 | `LICENSE.pdf` / `LICENSE.docx` / `F2R Hardware License v1.0.docx` | Licence text |
 
 `.step` files open in FreeCAD, Fusion 360, Onshape, SolidWorks and most other CAD tools. Export each body to STL (or 3MF) for slicing.
@@ -238,6 +240,53 @@ Then:
 1. Power the 12 V supply, then the Nano.
 2. Watch the platform under a microscope or with a dial indicator. It should step back and forth once a second.
 3. To check resolution yourself, image a known feature (a calibration slide or a lithographed pattern) and count steps needed to cross a known distance.
+
+### Full stage firmware
+
+Once the test works, upload the full firmware for your controller. Both versions use the pin map in Step 3 and the same serial commands.
+
+| Controller | Sketch |
+|---|---|
+| Arduino Nano | [`firmware/xy_lab_nano/xy_lab_nano.ino`](firmware/xy_lab_nano/xy_lab_nano.ino) |
+| ESP32 | [`firmware/xy_lab_esp32/xy_lab_esp32.ino`](firmware/xy_lab_esp32/xy_lab_esp32.ino) |
+
+Install **AccelStepper** and **Adafruit NeoPixel** from the Arduino Library Manager first. Open the serial monitor at **115200 baud** and send one command per line:
+
+| Command | Action |
+|---|---|
+| `R` / `L` | X axis forward / back |
+| `U` / `D` | Y axis forward / back |
+| `+` / `-` | 3rd axis forward / back (optional axis) |
+| `1` / `0` | Light ring on / off |
+
+Jog commands must be resent continuously (for example while a key is held). If no command arrives for 350 ms, all axes stop and the drivers are disabled so the motors stay cool. Change `motorSpeed` at the top of the sketch to set the jog speed in steps per second.
+
+### Web controller (ESP32)
+
+[`software/stage_controller.py`](software/stage_controller.py) is a browser-based controller with a live camera view. It has:
+
+- a D-pad, keyboard arrows, focus (Z) buttons and exact microstep moves
+- live nm-per-step estimates
+- tuning for cross-axis (diagonal) compensation
+- a repeatability test suite: bidirectional, unidirectional, staircase, XY square closure and drift runs
+- timestamped CSV logs for lining up with Tracker video
+
+It needs its own firmware, [`firmware/web_controller_esp32/web_controller_esp32.ino`](firmware/web_controller_esp32/web_controller_esp32.ino) (ESP32 only), which adds precision moves, move acknowledgements and a hard halt on top of the jog commands above.
+
+1. Flash `web_controller_esp32.ino` to the ESP32 (same libraries as above).
+   - The firmware drives the Y driver's EN from **GPIO4**, not the shared GPIO25 in Step 3. Either wire the Y carrier's EN to GPIO4, or change `EN_PIN_Y` to `25` at the top of the sketch if you used the shared-EN wiring.
+2. Install Python 3 and the requirements:
+
+   ```
+   pip install -r software/requirements.txt
+   ```
+
+3. At the top of `stage_controller.py`, set `SERIAL_PORT` (for example `COM4` on Windows or `/dev/ttyUSB0` on Linux) and `CAM_INDEX` (0 = built-in camera, 1 = USB microscope camera).
+4. Run `python software/stage_controller.py` and open <http://localhost:5002>. Other devices on the same network can use `http://<this-computer's-IP>:5002`.
+
+The microstep setting in the page (default 1/16) only scales the nm figures. It must match the MS1/MS2 jumpers on the carriers (Step 4).
+
+> The web page has no login. Anyone on the same network can move the stage, so run it only on a network you trust.
 
 ## Troubleshooting
 
