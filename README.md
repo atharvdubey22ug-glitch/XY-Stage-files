@@ -51,6 +51,7 @@ If you are building one for the first time, **start with XY Lab**.
 | `XY STAGE UPDATED.step` | CAD for the revised XY One |
 | `ASSEMBLY.md` + `assembly/` | Illustrated XY Lab assembly guide and its images |
 | `Electronics and parts.pdf` | Original parts list with purchase links |
+| `wiring/` | Circuit diagrams for the Arduino Nano and ESP32 versions |
 | `LICENSE.pdf` / `LICENSE.docx` / `F2R Hardware License v1.0.docx` | Licence text |
 
 `.step` files open in FreeCAD, Fusion 360, Onshape, SolidWorks and most other CAD tools. Export each body to STL (or 3MF) for slicing.
@@ -130,16 +131,33 @@ Video walkthrough: <https://www.youtube.com/watch?v=pOMRzBdshEY&t=94s>
 1. Plug each TMC2208 into an expansion board. Match the module's **EN** pin to the board's EN position (check the pin labels; do not go by orientation alone).
 2. Connect the 12 V supply to each expansion board's power input. Observe polarity.
 3. Connect each motor to its board's motor header: **coil A → 1A/1B, coil B → 2A/2B**. If a motor vibrates but doesn't turn, swap the two wires of *one* coil.
-4. Connect the Nano to each board. Suggested pin map (change it in your firmware if needed):
+4. Connect the controller to each board. Pin map for both controller options (change it in your firmware if needed):
 
-| Axis | STEP | DIR | EN |
-|---|---|---|---|
-| X | D2 | D3 | D8 (shared) |
-| Y | D4 | D5 | D8 (shared) |
-| Z / 3rd (optional) | D6 | D7 | D8 (shared) |
+| Signal | Arduino Nano | ESP32 |
+|---|---|---|
+| X STEP / DIR | D2 / D3 | GPIO26 / GPIO27 |
+| Y STEP / DIR | D4 / D5 | GPIO14 / GPIO12 |
+| Z / 3rd STEP / DIR (optional) | D6 / D7 | GPIO33 / GPIO32 |
+| EN (shared by all drivers, LOW = on) | D8 | GPIO25 |
+| Light ring data (optional) | A0 | GPIO5 |
+| Logic supply to each board | 5V | 3V3 |
 
-5. Connect Nano **GND to the 12 V supply GND** (common ground) and Nano **5 V** to each board's logic supply if the board needs it.
-6. Power the Nano from USB while testing.
+5. Connect controller **GND to the 12 V supply GND** (common ground), and the controller's logic voltage to each board's logic-supply pin: **5V on the Nano, 3V3 on the ESP32**. On the ESP32, use 3V3 rather than 5 V so the TMC2208 inputs switch reliably at 3.3 V levels.
+6. Power the controller from USB while testing. The 12 V supply feeds only the boards' motor input.
+
+**Arduino Nano**
+
+![XY Lab wiring diagram for the Arduino Nano](wiring/xy-lab-wiring-nano.svg)
+
+**ESP32**
+
+![XY Lab wiring diagram for the ESP32](wiring/xy-lab-wiring-esp32.svg)
+
+Notes:
+
+- Board pin names differ between carrier boards. Wire by the label printed on your board (commonly E / S / D / G for the control header and 5V / GND / 12–24V for power), not by position in the drawing.
+- GPIO12 (Y DIR) is an ESP32 boot-strapping pin. Nothing may pull it high at power-up, or the ESP32 will not boot.
+- The third axis and the light ring are optional and drawn dashed.
 
 ## Step 4 — Set the driver current and microstepping
 
@@ -179,7 +197,7 @@ Then bolt the slotted feet to a breadboard with M6 screws. Mount any optics to t
 
 ## Step 6 — First motion test
 
-Upload this minimal sketch to the Nano. It moves the X axis forward and back by a fixed number of microsteps.
+Upload this minimal sketch to the Nano. It moves the X axis forward and back by a fixed number of microsteps. On an ESP32, change the three pins to 26, 27 and 25.
 
 ```cpp
 // Minimal STEP/DIR test for one axis (X). Adjust pins to your wiring.
